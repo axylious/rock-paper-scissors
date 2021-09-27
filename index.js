@@ -32,10 +32,12 @@ function singleRound(playerSelection, computerSelection){
             case 'paper':
                 oppScore++;
                 opp.innerText = oppScore;
+                win(pScore,oppScore);
                 return 'Paper beats rock, you lose'
             case 'scissors':
                 pScore++;
                 player.innerHTML = pScore;
+                win(pScore,oppScore);
                 return 'Rock beats scissors, you win'
         }
     } else if(playerSelection == 'paper'){
@@ -43,10 +45,12 @@ function singleRound(playerSelection, computerSelection){
             case 'rock':
                 pScore++;
                 player.innerHTML = pScore;
+                win(pScore,oppScore);
                 return 'Paper beats rock, you win'
             case 'scissors':
                 oppScore++;
                 opp.innerText = oppScore;
+                win(pScore,oppScore);
                 return 'Scissors beats paper, you lose'
         }
     } else if(playerSelection == 'scissors'){
@@ -54,10 +58,12 @@ function singleRound(playerSelection, computerSelection){
             case 'rock':
                 oppScore++;
                 opp.innerText = oppScore;
+                win(pScore,oppScore);
                 return 'Rock beats scissors, you lose'
             case 'paper':
                 pScore++;
                 player.innerHTML = pScore;
+                win(pScore,oppScore);
                 return 'Scissors beats paper, you win'
         }
     }
@@ -69,3 +75,12 @@ function game(choice){
     console.log(singleRound(playerSelection,computerSelection))
 }
 
+function win(pScore, oppScore){
+    if(pScore >= 5){
+        window.alert('You won!\n Win more!');
+        location.reload();
+    } else if(oppScore >= 5){
+        window.alert('You lost...\n Try again!');
+        location.reload();
+    }
+}
