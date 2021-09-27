@@ -1,3 +1,17 @@
+const rock = document.querySelector('#rock');
+const paper = document.querySelector('#paper');
+const scissors = document.querySelector('#scissors');
+
+const player = document.getElementById('player');
+const opp = document.getElementById('opp');
+
+var pScore = parseInt(document.getElementById('player').innerHTML);
+var oppScore = parseInt(document.getElementById('opp').innerHTML);
+
+rock.onclick = () => game('rock');
+paper.onclick = () => game('paper');
+scissors.onclick = () => game('scissors');
+
 function computerPlay(){
     let x = Math.floor(Math.random() * 3 + 1)
     switch(x){
@@ -16,37 +30,42 @@ function singleRound(playerSelection, computerSelection){
     } else if(playerSelection == 'rock'){
         switch(computerSelection){
             case 'paper':
+                oppScore++;
+                opp.innerText = oppScore;
                 return 'Paper beats rock, you lose'
             case 'scissors':
+                pScore++;
+                player.innerHTML = pScore;
                 return 'Rock beats scissors, you win'
         }
     } else if(playerSelection == 'paper'){
         switch(computerSelection){
             case 'rock':
+                pScore++;
+                player.innerHTML = pScore;
                 return 'Paper beats rock, you win'
             case 'scissors':
+                oppScore++;
+                opp.innerText = oppScore;
                 return 'Scissors beats paper, you lose'
         }
     } else if(playerSelection == 'scissors'){
         switch(computerSelection){
             case 'rock':
+                oppScore++;
+                opp.innerText = oppScore;
                 return 'Rock beats scissors, you lose'
             case 'paper':
+                pScore++;
+                player.innerHTML = pScore;
                 return 'Scissors beats paper, you win'
         }
     }
 }
 
-function game(num){
-    for(var i=0; i<num; i++){
-        const playerSelection = prompt("Select your choice by typing out either rock, paper, or scissors: ").toLowerCase()
-        const computerSelection = computerPlay()
-        console.log(singleRound(playerSelection,computerSelection))
-    }
+function game(choice){
+    const playerSelection = choice;
+    const computerSelection = computerPlay()
+    console.log(singleRound(playerSelection,computerSelection))
 }
 
-
-
-const x = parseInt(prompt('How many games would you like to play: '))
-
-game(x)
